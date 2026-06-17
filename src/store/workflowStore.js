@@ -84,7 +84,6 @@ export const useWorkflowStore = create((set, get) => ({
   nodes: SAMPLE_WORKFLOW.nodes.map(toFlowNode),
   edges: SAMPLE_WORKFLOW.edges.map(toFlowEdge),
   selectedNodeId: null,
-  bottomTab: 'preview',
 
   setWorkflowName: (name) => set({ workflowName: name }),
 
@@ -171,5 +170,4 @@ export const useWorkflowStore = create((set, get) => ({
     return validateWorkflow(nodes, edges);
   },
 
-  setBottomTab: (tab) => set({ bottomTab: tab }),
 }));
