@@ -775,46 +775,120 @@ body {
 .preview-grid-container {
   flex: 1;
   min-height: 0;
+  padding: 12px 16px;
+  background: var(--surface-2);
 }
 
-/* Quartz theme customisation */
+/* ──────────────────────────────────────────
+   AG Grid — compact, Excel-like theme
+────────────────────────────────────────── */
 .ag-theme-quartz {
-  --ag-font-family: inherit;
-  --ag-font-size: 12.5px;
+  --ag-font-family: 'Segoe UI', 'Apple SD Gothic Neo', -apple-system, 'Malgun Gothic', sans-serif;
+  --ag-font-size: 12px;
   --ag-background-color: #ffffff;
-  --ag-foreground-color: #111827;
-  --ag-header-background-color: #F8F9FB;
-  --ag-header-foreground-color: #4B5563;
-  --ag-row-hover-color: #EFF6FF;
-  --ag-selected-row-background-color: #DBEAFE;
-  --ag-border-color: #E5E7EB;
-  --ag-header-column-separator-color: #E5E7EB;
-  --ag-cell-horizontal-padding: 14px;
-  --ag-row-height: 36px;
-  --ag-header-height: 38px;
-  --ag-odd-row-background-color: #FAFAFA;
+  --ag-foreground-color: #1F2933;
+
+  /* Excel "Green, Medium" header — balanced tone, white text */
+  --ag-header-background-color: #70AD47;
+  --ag-header-foreground-color: #ffffff;
+  --ag-header-height: 30px;
+  --ag-header-column-separator-display: block;
+  --ag-header-column-separator-height: 100%;
+  --ag-header-column-separator-color: rgba(255, 255, 255, 0.40);
+  --ag-header-column-resize-handle-display: block;
+  --ag-header-column-resize-handle-color: rgba(255, 255, 255, 0.55);
+
+  /* Gridlines on every cell = the Excel look */
+  --ag-borders: solid 1px;
+  --ag-border-color: #B7CFA4;
+  --ag-cell-horizontal-border: solid #DBE9CF;
+  --ag-row-border-color: #DBE9CF;
+
+  /* Tight rows */
+  --ag-row-height: 28px;
+  --ag-cell-horizontal-padding: 8px;
+  --ag-grid-size: 3px;
+
+  --ag-row-hover-color: #F0F7EC;
+  --ag-selected-row-background-color: #DCEBD0;
+  --ag-odd-row-background-color: #F7FBF4;
   --ag-card-shadow: none;
-  --ag-range-selection-border-color: #2563EB;
-  --ag-input-focus-border-color: #2563EB;
-  --ag-icon-color: #6B7280;
-  --ag-status-bar-background-color: #F8F9FB;
+  --ag-range-selection-border-color: #70AD47;
+  --ag-range-selection-background-color: rgba(112, 173, 71, 0.12);
+  --ag-input-focus-border-color: #70AD47;
+  --ag-icon-color: #5F6B7A;
+  --ag-status-bar-background-color: #F0F7EC;
+  --ag-wrapper-border-radius: 6px;
+  --ag-cell-widget-spacing: 6px;
 }
 
+/* Vertical gridlines on body cells */
+.ag-theme-quartz .ag-cell {
+  border-right: 1px solid #DBE9CF;
+  line-height: calc(var(--ag-row-height) - 1px);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Header: Excel green with bold white labels + full separators */
+.ag-theme-quartz .ag-header {
+  border-bottom: 1px solid #5C9139;
+}
+.ag-theme-quartz .ag-header-cell {
+  border-right: 1px solid rgba(255, 255, 255, 0.40);
+}
 .ag-theme-quartz .ag-header-cell-label {
   font-weight: 600;
-  font-size: 12px;
+  font-size: 11.5px;
   text-transform: none;
   letter-spacing: 0;
+  color: #ffffff;
 }
-.ag-theme-quartz .ag-cell {
-  line-height: 36px;
+/* Sort/filter/menu icons in the header should be white too */
+.ag-theme-quartz .ag-header-icon,
+.ag-theme-quartz .ag-header-cell .ag-icon {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Excel-like row header / pinned look */
+.ag-theme-quartz .ag-row {
+  font-size: 12px;
+}
+.ag-theme-quartz .ag-row-selected .ag-cell {
+  border-right-color: #B7D49B;
+}
+
+/* Compact floating (column) filter row */
+.ag-theme-quartz .ag-floating-filter {
+  height: 28px !important;
+}
+.ag-theme-quartz .ag-floating-filter-input .ag-input-field-input {
+  font-size: 11.5px;
+  height: 22px;
+}
+
+/* Numbers right-aligned read as a spreadsheet (apply via colDef cellClass if desired) */
+.ag-theme-quartz .ag-right-aligned-cell { justify-content: flex-end; }
+
+/* Pagination + status bar — slim */
+.ag-theme-quartz .ag-paging-panel {
+  height: 32px;
+  min-height: 32px;
+  font-size: 11.5px;
+  border-top: 1px solid var(--border);
 }
 .ag-theme-quartz .ag-status-bar {
   border-top: 1px solid var(--border);
   font-size: 11.5px;
   color: var(--text-3);
-  padding: 0 14px;
+  padding: 0 10px;
+  min-height: 26px;
 }
+
+/* Thin scrollbars to match the rest of the UI */
+.ag-theme-quartz ::-webkit-scrollbar { width: 9px; height: 9px; }
+.ag-theme-quartz ::-webkit-scrollbar-thumb { background: #C4CBD2; border-radius: 5px; border: 2px solid transparent; background-clip: padding-box; }
+.ag-theme-quartz ::-webkit-scrollbar-thumb:hover { background: #A9B2BB; background-clip: padding-box; }
 
 .preview-empty {
   display: flex;
@@ -1265,6 +1339,8 @@ body {
   flex: 1;
   min-width: 0;
   min-height: 0;
+  padding: 12px 16px;
+  background: var(--surface-2);
 }
 
 /* DV info bar */

@@ -24,12 +24,13 @@ export default function PreviewGrid({ nodeType }) {
       </div>
       <div className="preview-grid-container ag-theme-quartz">
         <AgGridReact
+          theme="legacy"
           ref={gridRef}
           rowData={table?.rows || []}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
-          rowHeight={34}
-          headerHeight={36}
+          rowHeight={28}
+          headerHeight={30}
           statusBar={STATUS_BAR}
           rowSelection="multiple"
           animateRows

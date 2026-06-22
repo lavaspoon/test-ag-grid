@@ -74,9 +74,9 @@ async function callLmStudio({ endpoint, model, userQuery, columns, rows }) {
 
 /* ─── Row height ───────────────────────────────────────── */
 const ROW_HEIGHTS = [
-  { key: 'compact',     label: '촘촘히',   height: 28, icon: <AlignJustify size={13} /> },
-  { key: 'normal',      label: '보통',     height: 36, icon: <AlignCenter  size={13} /> },
-  { key: 'comfortable', label: '여유있게', height: 48, icon: <LayoutList   size={13} /> },
+  { key: 'compact',     label: '촘촘히',   height: 24, icon: <AlignJustify size={13} /> },
+  { key: 'normal',      label: '보통',     height: 28, icon: <AlignCenter  size={13} /> },
+  { key: 'comfortable', label: '여유있게', height: 38, icon: <LayoutList   size={13} /> },
 ];
 
 /* ─── Node selector ────────────────────────────────────── */
@@ -368,7 +368,7 @@ export default function DataViewer({ onBack }) {
   const [aiOpen, setAiOpen] = useState(false);
 
   const table = useMemo(() => getTableForNode(nodeType), [nodeType]);
-  const rowHeight = ROW_HEIGHTS.find((r) => r.key === rowHeightKey)?.height ?? 36;
+  const rowHeight = ROW_HEIGHTS.find((r) => r.key === rowHeightKey)?.height ?? 28;
 
   const columnDefs = useMemo(
     () => buildColDefs(table?.columns || [], { floatingFilter: pinnedFilterRow }),
@@ -478,13 +478,14 @@ export default function DataViewer({ onBack }) {
       <div className="dv-body">
         <div className="dv-grid-wrap ag-theme-quartz">
           <AgGridReact
+            theme="legacy"
             ref={gridRef}
             rowData={table?.rows || []}
             columnDefs={columnDefs}
             defaultColDef={defaultColDef}
             rowHeight={rowHeight}
-            headerHeight={38}
-            floatingFiltersHeight={pinnedFilterRow ? 34 : 0}
+            headerHeight={30}
+            floatingFiltersHeight={pinnedFilterRow ? 28 : 0}
             statusBar={STATUS_BAR}
             rowSelection="multiple"
             enableCellTextSelection
